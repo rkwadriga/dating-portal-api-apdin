@@ -27,7 +27,7 @@ trait AuthenticationTrait
 
         // Create admin user
         if ($autoCreate) {
-            AdminFactory::new()->create(['email' => $email, 'plainPassword' => $password]);
+            AdminFactory::createOne(['email' => $email, 'plainPassword' => $password]);
         }
 
         // Login admin user

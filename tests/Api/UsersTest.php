@@ -271,30 +271,6 @@ class UsersTest extends AbstractApiTest
         $this->assertErrorResponse(Response::HTTP_UNPROCESSABLE_ENTITY, 'lastName');
     }
 
-    public function testSuccessfulUpdateItemFullData()
-    {
-        // Create a user and copy object with current attributes
-        $user = UserFactory::new()->create();
-        /** @var User $oldUser */
-        $oldUser = clone $user->object();
-        $updateData = self::getUserData();
-
-        // Login as admin
-        $this->login();
-
-        // Send "PUT /users/<user_id>" request
-        $this->send([Routes::UPDATE_USER, $user->getId()], $updateData);
-        // Check the response status code
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-
-        // Get response params
-        $responseParams = $this->getResponseParams();
-        $this->assertIsArray($responseParams);
-
-        // Get updated user object from DB and compare it from old object adn response data
-        $this->assetUpdatedUser($oldUser, $updateData, $responseParams);
-    }
-
     public function testSuccessfulUpdateItemPartialData()
     {
         // Create a user and copy object with current attributes
@@ -475,6 +451,30 @@ class UsersTest extends AbstractApiTest
         $this->assertIsArray($responseParams);
         // Get updated user object from DB and compare it from old object adn response data
         $this->assetUpdatedUser($oldUser, $partialData, $responseParams);
+    }
+
+    public function testSuccessfulUpdateItemFullData()
+    {
+        // Create a user and copy object with current attributes
+        $user = UserFactory::new()->create();
+        /** @var User $oldUser */
+        $oldUser = clone $user->object();
+        $updateData = self::getUserData();
+
+        // Login as admin
+        $this->login();
+
+        // Send "PUT /users/<user_id>" request
+        $this->send([Routes::UPDATE_USER, $user->getId()], $updateData);
+        // Check the response status code
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        // Get response params
+        $responseParams = $this->getResponseParams();
+        $this->assertIsArray($responseParams);
+
+        // Get updated user object from DB and compare it from old object adn response data
+        $this->assetUpdatedUser($oldUser, $updateData, $responseParams);
     }
 
     public function testUpdateNotExistedItem()
