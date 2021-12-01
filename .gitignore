@@ -1,0 +1,32 @@
+/.idea
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+/symfony.lock
+###< symfony/framework-bundle ###
+
+/composer.lock
+
+###> Docker ###
+/.docker/composer/tmp
+/.docker/php/logs
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+/config/jwt_test/*.pem
+###< lexik/jwt-authentication-bundle ###
